@@ -1,16 +1,22 @@
-# React + Vite
+# ITBD HRIS — Frontend Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A click-through frontend demo of ITBD's in-house HRIS — React + Vite +
+Tailwind, seeded mock data, real business logic computed live in the
+browser (no backend, no database).
 
-Currently, two official plugins are available:
+## Quick start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+Open the printed URL (default `http://localhost:5173`), then use the role
+switcher (top-right avatar) to sign in as an Employee, Manager, HR Admin, or
+Super Admin.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**See [CONTEXT.md](./CONTEXT.md)** for full setup instructions, what to try
+in the demo, project structure, and known placeholders.
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+The original build brief is in
+[ITBD_HRIS_Demo_Build_Brief.md](./ITBD_HRIS_Demo_Build_Brief.md).
