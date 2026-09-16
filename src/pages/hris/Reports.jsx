@@ -2,7 +2,7 @@ import { useDataStore } from "../../state/DataStore";
 import PageHeader from "../../components/ui/PageHeader";
 import Card, { CardHeader } from "../../components/ui/Card";
 import StatTile from "../../components/ui/StatTile";
-import { activeEmployments, getOrgUnit } from "../../lib/selectors";
+import { activeEmployments, getOrgUnit, topLevelOrgUnit } from "../../lib/selectors";
 
 export default function HrisReports() {
   const { db } = useDataStore();
@@ -15,7 +15,7 @@ export default function HrisReports() {
   for (const e of employees) {
     const pos = db.positions.find((p) => p.position_id === e.position_id);
     const unit = getOrgUnit(db, pos?.org_unit_id);
-    const top = topLevelUnit(db, unit);
+    const top = topLevelOrgUnit(db, unit);
     byOrgUnit[top?.name ?? "Unassigned"] = (byOrgUnit[top?.name ?? "Unassigned"] || 0) + 1;
   }
   const maxCount = Math.max(...Object.values(byOrgUnit), 1);
@@ -63,14 +63,4 @@ export default function HrisReports() {
       </div>
     </div>
   );
-}
-
-function topLevelUnit(db, unit) {
-  let current = unit;
-  while (current?.parent_org_unit_id) {
-    const parent = getOrgUnit(db, current.parent_org_unit_id);
-    if (!parent) break;
-    current = parent;
-  }
-  return current;
 }

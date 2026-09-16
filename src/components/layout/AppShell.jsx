@@ -7,6 +7,7 @@ import MobileBottomNav from "./MobileBottomNav";
 import Logo from "../ui/Logo";
 import { IconX } from "../ui/Icons";
 import RouteGuard from "./RouteGuard";
+import HrChatBubble from "../chat/HrChatBubble";
 
 export default function AppShell() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -70,6 +71,7 @@ export default function AppShell() {
       </div>
 
       <MobileBottomNav />
+      <HrChatBubble />
     </div>
   );
 }

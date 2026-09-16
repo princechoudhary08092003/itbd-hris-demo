@@ -1,13 +1,16 @@
 import {
   IconHome, IconCalendar, IconClock, IconBriefcase, IconUsers, IconUserPlus, IconUserMinus,
-  IconShield, IconTicket, IconBuilding,
+  IconShield, IconTicket, IconBuilding, IconTarget, IconMap,
 } from "./components/ui/Icons";
 
 // minRole: employee | manager | hr_admin | super_admin — lowest role that can see the item
 export const navSections = [
   {
     title: "Overview",
-    items: [{ label: "Dashboard", path: "/", icon: IconHome, minRole: "employee" }],
+    items: [
+      { label: "Dashboard", path: "/", icon: IconHome, minRole: "employee" },
+      { label: "Product Roadmap", path: "/roadmap", icon: IconMap, minRole: "employee" },
+    ],
   },
   {
     title: "Leave",
@@ -30,6 +33,18 @@ export const navSections = [
       { label: "Assign Roster", path: "/attendance/roster", minRole: "hr_admin" },
       { label: "Bulk Shift Upload", path: "/attendance/bulk-upload", minRole: "hr_admin" },
       { label: "Attendance Export", path: "/attendance/export", minRole: "hr_admin" },
+    ],
+  },
+  {
+    title: "Performance",
+    icon: IconTarget,
+    items: [
+      { label: "Impact Tier Scoring", path: "/performance/scoring", minRole: "manager" },
+      { label: "PIP Cases", path: "/performance/pip", minRole: "manager" },
+      { label: "Discipline Cases", path: "/performance/discipline", minRole: "hr_admin" },
+      { label: "Calibration & Normalization", path: "/performance/calibration", minRole: "hr_admin" },
+      { label: "Succession Planning", path: "/performance/succession", minRole: "hr_admin" },
+      { label: "KPI Data Ingestion", path: "/performance/kpi-ingestion", minRole: "super_admin" },
     ],
   },
   {
@@ -74,13 +89,17 @@ export const navSections = [
     icon: IconShield,
     items: [
       { label: "HR Case Management", path: "/admin/cases", minRole: "hr_admin" },
+      { label: "Real-Time Analytics", path: "/admin/analytics", minRole: "hr_admin" },
       { label: "Bulk Operations", path: "/admin/bulk-ops", minRole: "hr_admin" },
       { label: "Asset Management", path: "/admin/assets", minRole: "hr_admin" },
       { label: "Document Expiry", path: "/admin/document-expiry", minRole: "hr_admin" },
       { label: "System Reports", path: "/admin/reports", minRole: "hr_admin" },
+      { label: "Compliance & Data Privacy", path: "/admin/compliance", minRole: "hr_admin" },
       { label: "Company Setup", path: "/admin/company", minRole: "super_admin" },
       { label: "Policy Configuration", path: "/admin/policy-config", minRole: "super_admin" },
       { label: "User & Role Management", path: "/admin/roles", minRole: "super_admin" },
+      { label: "Security (SSO / MFA)", path: "/admin/security", minRole: "super_admin" },
+      { label: "Integrations (ERP / GL)", path: "/admin/integrations", minRole: "super_admin" },
       { label: "Audit Log", path: "/admin/audit-log", minRole: "super_admin" },
     ],
   },

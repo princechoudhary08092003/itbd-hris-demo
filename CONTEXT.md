@@ -58,6 +58,16 @@ resets if you close the tab or clear site data.
   converted back to employee) — the multi-employment data model in action.
 - **Onboarding**: convert Olivia Martinez from pre-onboarding (no company
   email yet) into a full employee.
+- **Product Roadmap** (top of the sidebar): the TeamGPS performance-management
+  roadmap (22 items across 4 phases) with live delivery status per item.
+- **Performance → PIP Cases / Discipline Cases**: create a case, advance it
+  through its stages, and auto-generate the letter.
+- **Performance → Calibration & Normalization**: adjust a person's scores and
+  watch the bell-curve distribution and their tier update live.
+- **Recruitment → TA Management**: a real hiring pipeline kanban — move a
+  candidate between stages.
+- The floating chat bubble (bottom-right) is a prototype HR FAQ assistant —
+  try asking about leave, comp-off, payslips, or holidays.
 - Toggle dark/light mode (moon/sun icon, top right).
 
 ## Project structure
@@ -85,8 +95,10 @@ src/
     ui/             # shared design-system pieces (Card, Button, Badge,
                     # Table, Modal, PageHeader/PageBanner, Logo, icons…)
   pages/            # one folder per module (dashboard, leave, attendance,
-                    # hris, onboarding, exit, recruitment, admin, helpdesk),
-                    # matching Section 7 of the build brief
+                    # hris, onboarding, exit, recruitment, admin, helpdesk,
+                    # performance, roadmap) — performance/ is the TeamGPS
+                    # feature roadmap build-out (Impact Tier Scoring, PIP,
+                    # Discipline, Calibration, Succession, KPI Ingestion)
   assets/images/    # stock photography used in banners (downloaded locally,
                     # not hotlinked)
 navConfig.js         # sidebar structure + per-route minimum role, used for
@@ -115,6 +127,12 @@ per the build brief (this demo precedes the real 6-month backend build).
 ## Reference
 
 The full build brief this demo was built from is `ITBD_HRIS_Demo_Build_Brief.md`
-(if included in this repo) — Sections 6–11 in particular cover the data
-model, screens, business rules, and seed data requirements this codebase
-implements.
+— Sections 6–11 in particular cover the data model, screens, business rules,
+and seed data requirements this codebase implements.
+
+A second brief, the "HRMS/TeamGPS Feature Roadmap" (22 items across 4
+phases), was layered on afterward — see the in-app **Product Roadmap** page
+(`/roadmap`, source in `src/data/roadmapItems.js`) for the exact scope and
+what's delivered vs. placeholder. Items needing real infrastructure (SSO/MFA,
+AI-powered insights, ERP/GL integration) are honest placeholders, same
+treatment as Recruitment.

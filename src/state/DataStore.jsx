@@ -1,6 +1,7 @@
 import { createContext, useContext, useMemo, useReducer } from "react";
 import { createInitialState } from "../data";
 import { toDateStr } from "../lib/attendance";
+import { PIP_STAGE_ORDER, DISCIPLINE_STAGE_ORDER } from "../lib/performance";
 
 const DataStoreContext = createContext(null);
 
@@ -244,6 +245,92 @@ function reducer(state, action) {
           t.ticket_id === ticket_id ? { ...t, status: status ?? t.status, messages: [...t.messages, { from, text, at: toDateStr(new Date()) }] } : t
         ),
       };
+    }
+
+    case "CREATE_PIP_CASE": {
+      const pip = { pip_id: nextId("PIP"), stage: "initiated", letter_generated: false, ...action.payload };
+      return { ...state, pipCases: [pip, ...state.pipCases] };
+    }
+
+    case "ADVANCE_PIP_CASE": {
+      const { pip_id, outcome } = action.payload;
+      return {
+        ...state,
+        pipCases: state.pipCases.map((p) => {
+          if (p.pip_id !== pip_id) return p;
+          const currentIndex = PIP_STAGE_ORDER.indexOf(p.stage);
+          const nextStage = PIP_STAGE_ORDER[Math.min(currentIndex + 1, PIP_STAGE_ORDER.length - 1)];
+          return { ...p, stage: nextStage, outcome: nextStage === "closed" ? outcome ?? p.outcome : p.outcome };
+        }),
+      };
+    }
+
+    case "GENERATE_PIP_LETTER": {
+      return { ...state, pipCases: state.pipCases.map((p) => (p.pip_id === action.payload.pip_id ? { ...p, letter_generated: true } : p)) };
+    }
+
+    case "CREATE_DISCIPLINE_CASE": {
+      const disc = { case_id: nextId("DISC"), stage: "nte_issued", ntd_date: null, decision: null, ...action.payload };
+      return { ...state, disciplineCases: [disc, ...state.disciplineCases] };
+    }
+
+    case "ADVANCE_DISCIPLINE_CASE": {
+      const { case_id, decision } = action.payload;
+      return {
+        ...state,
+        disciplineCases: state.disciplineCases.map((c) => {
+          if (c.case_id !== case_id) return c;
+          const currentIndex = DISCIPLINE_STAGE_ORDER.indexOf(c.stage);
+          const nextStage = DISCIPLINE_STAGE_ORDER[Math.min(currentIndex + 1, DISCIPLINE_STAGE_ORDER.length - 1)];
+          return {
+            ...c,
+            stage: nextStage,
+            ntd_date: nextStage === "ntd_issued" ? toDateStr(new Date()) : c.ntd_date,
+            decision: nextStage === "closed" ? decision ?? c.decision : c.decision,
+          };
+        }),
+      };
+    }
+
+    case "ADJUST_CALIBRATION": {
+      const { employment_id, results_score, behavior_score } = action.payload;
+      return {
+        ...state,
+        performanceMetrics: state.performanceMetrics.map((m) =>
+          m.employment_id === employment_id ? { ...m, results_score, behavior_score, source: "calibration_adjustment" } : m
+        ),
+      };
+    }
+
+    case "RUN_KPI_INGESTION": {
+      const run = {
+        run_id: nextId("KPI-RUN"),
+        ran_at: toDateStr(new Date()),
+        source: action.payload?.source ?? "QA Scorecard API",
+        records_ingested: state.performanceMetrics.length,
+        status: "success",
+      };
+      return { ...state, kpiIngestionLog: [run, ...state.kpiIngestionLog] };
+    }
+
+    case "UPDATE_SUCCESSION_READINESS": {
+      const { plan_id, readiness } = action.payload;
+      return { ...state, successionPlans: state.successionPlans.map((p) => (p.plan_id === plan_id ? { ...p, readiness } : p)) };
+    }
+
+    case "COMPLETE_PROBATION_REVIEW": {
+      const { review_id, outcome, reviewed_by } = action.payload;
+      return {
+        ...state,
+        probationReviews: state.probationReviews.map((r) =>
+          r.review_id === review_id ? { ...r, status: "completed", outcome, reviewed_by } : r
+        ),
+      };
+    }
+
+    case "MOVE_CANDIDATE_STAGE": {
+      const { candidate_id, stage } = action.payload;
+      return { ...state, candidates: state.candidates.map((c) => (c.candidate_id === candidate_id ? { ...c, stage } : c)) };
     }
 
     default:

@@ -66,6 +66,19 @@ export function isManagerOf(db, managerEmploymentId, employmentId) {
   return directReportEmployments(db, managerEmploymentId).some((e) => e.employment_id === employmentId);
 }
 
+// The org unit one level below the absolute root (e.g. "Client Delivery",
+// not "Executive") — what people mean by "department" for headcount charts.
+export function topLevelOrgUnit(db, unit) {
+  let current = unit;
+  while (current?.parent_org_unit_id) {
+    const parent = getOrgUnit(db, current.parent_org_unit_id);
+    if (!parent) break;
+    if (!parent.parent_org_unit_id) return current;
+    current = parent;
+  }
+  return current;
+}
+
 export function orgUnitPath(db, orgUnitId) {
   const path = [];
   let current = getOrgUnit(db, orgUnitId);

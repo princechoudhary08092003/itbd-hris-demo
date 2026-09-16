@@ -34,6 +34,7 @@ export default function EmployeeDashboard() {
   const actions = awaitingMyAction(db, employmentId, isHRAdmin);
   const birthdays = upcomingBirthdays(db, 30).filter((b) => b.employment_id !== employmentId);
   const holidays = upcomingHolidays(db, employment.work_location, 60);
+  const myPayslips = db.payslips.filter((p) => p.employment_id === employmentId);
 
   const statusMeta = ATTENDANCE_STATUS_META[todayAttendance.status];
   const hour = new Date().getHours();
@@ -184,6 +185,7 @@ export default function EmployeeDashboard() {
                 <QuickLink to="/hris/org-chart" label="Org Chart" />
                 <QuickLink to="/leave/apply" label="Apply Leave" />
                 <QuickLink to="/attendance/comp-off" label="Comp-Off" />
+                {isManager && <QuickLink to="/hris/letters" label="Issue a Letter" />}
               </div>
             </Card>
           </Reveal>
@@ -231,6 +233,24 @@ export default function EmployeeDashboard() {
           </Reveal>
 
           <Reveal delay={0.2}>
+            <Card>
+              <CardHeader title="My Payslips" subtitle="Issued by the payroll vendor — no salary detail is stored in this system" />
+              {myPayslips.length === 0 ? (
+                <EmptyState title="No payslips yet" />
+              ) : (
+                <div className="flex flex-col gap-2">
+                  {myPayslips.map((p) => (
+                    <div key={p.payslip_id} className="flex items-center justify-between rounded-lg border border-[var(--surface-border)] px-3 py-2 text-sm">
+                      <span className="text-[var(--text-primary)]">{p.period}</span>
+                      <Badge tone="green">Issued</Badge>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </Card>
+          </Reveal>
+
+          <Reveal delay={0.25}>
             <Card className="relative overflow-hidden">
               <div
                 className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full opacity-25 blur-2xl"

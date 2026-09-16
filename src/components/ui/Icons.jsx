@@ -155,6 +155,31 @@ export const IconLayers = (p) => (
     <path d="m3.5 12 8.5 4.5 8.5-4.5M3.5 16.5 12 21l8.5-4.5" />
   </Svg>
 );
+export const IconTarget = (p) => (
+  <Svg {...p}>
+    <circle cx="12" cy="12" r="8.5" />
+    <circle cx="12" cy="12" r="4.5" />
+    <circle cx="12" cy="12" r="0.8" fill="currentColor" />
+  </Svg>
+);
+export const IconMap = (p) => (
+  <Svg {...p}>
+    <path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2Z" />
+    <path d="M9 4v14M15 6v14" />
+  </Svg>
+);
+export const IconLock = (p) => (
+  <Svg {...p}>
+    <rect x="5" y="11" width="14" height="9" rx="2" />
+    <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+  </Svg>
+);
+export const IconPlug = (p) => (
+  <Svg {...p}>
+    <path d="M9 3v5M15 3v5M7 8h10v3a5 5 0 0 1-5 5 5 5 0 0 1-5-5V8Z" />
+    <path d="M12 16v5" />
+  </Svg>
+);
 export const IconSearch = (p) => (
   <Svg {...p}>
     <circle cx="11" cy="11" r="7" />

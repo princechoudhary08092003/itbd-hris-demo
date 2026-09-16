@@ -48,11 +48,33 @@ import AuditLog from "./pages/admin/AuditLog";
 import Helpdesk from "./pages/helpdesk/Helpdesk";
 import EmployeeProfile from "./pages/hris/EmployeeProfile";
 
+import Roadmap from "./pages/roadmap/Roadmap";
+
+import ImpactScoring from "./pages/performance/ImpactScoring";
+import Pip from "./pages/performance/Pip";
+import Discipline from "./pages/performance/Discipline";
+import Calibration from "./pages/performance/Calibration";
+import Succession from "./pages/performance/Succession";
+import KpiIngestion from "./pages/performance/KpiIngestion";
+
+import Analytics from "./pages/admin/Analytics";
+import Compliance from "./pages/admin/Compliance";
+import Security from "./pages/admin/Security";
+import Integrations from "./pages/admin/Integrations";
+
 export default function App() {
   return (
     <Routes>
       <Route element={<AppShell />}>
         <Route path="/" element={<EmployeeDashboard />} />
+        <Route path="/roadmap" element={<Roadmap />} />
+
+        <Route path="/performance/scoring" element={<ImpactScoring />} />
+        <Route path="/performance/pip" element={<Pip />} />
+        <Route path="/performance/discipline" element={<Discipline />} />
+        <Route path="/performance/calibration" element={<Calibration />} />
+        <Route path="/performance/succession" element={<Succession />} />
+        <Route path="/performance/kpi-ingestion" element={<KpiIngestion />} />
 
         <Route path="/leave/apply" element={<ApplyLeave />} />
         <Route path="/leave/details" element={<LeaveDetails />} />
@@ -96,6 +118,10 @@ export default function App() {
         <Route path="/admin/policy-config" element={<PolicyConfig />} />
         <Route path="/admin/roles" element={<RolesAdmin />} />
         <Route path="/admin/audit-log" element={<AuditLog />} />
+        <Route path="/admin/analytics" element={<Analytics />} />
+        <Route path="/admin/compliance" element={<Compliance />} />
+        <Route path="/admin/security" element={<Security />} />
+        <Route path="/admin/integrations" element={<Integrations />} />
 
         <Route path="/helpdesk" element={<Helpdesk />} />
       </Route>

@@ -16,6 +16,14 @@ import { documents, assets } from "./seed/documents";
 import { announcements } from "./seed/announcements";
 import { helpdeskTickets } from "./seed/helpdeskTickets";
 import { securityRoles, permissionGrants, demoLogins } from "./seed/roles";
+import { performanceMetrics } from "./seed/performanceMetrics";
+import { pipCases } from "./seed/pipCases";
+import { disciplineCases } from "./seed/disciplineCases";
+import { successionPlans } from "./seed/successionPlans";
+import { probationReviews } from "./seed/probationReviews";
+import { kpiIngestionLog } from "./seed/kpiIngestionLog";
+import { payslips } from "./seed/payslips";
+import { candidates } from "./seed/candidates";
 
 // A fresh deep clone every time the app boots (or the demo is reset),
 // so edits made during a session never leak into the seed modules themselves.
@@ -44,5 +52,13 @@ export function createInitialState() {
     permissionGrants,
     demoLogins,
     shiftSwapRequests: [],
+    performanceMetrics,
+    pipCases,
+    disciplineCases,
+    successionPlans,
+    probationReviews,
+    kpiIngestionLog,
+    payslips,
+    candidates,
   });
 }

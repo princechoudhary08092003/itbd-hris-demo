@@ -12,7 +12,24 @@ export default function Roles() {
 
   return (
     <div>
-      <PageHeader title="User & Role Management" subtitle="Roles, who holds them in this demo, and field-level permission grants." />
+      <PageHeader title="User & Role Management" subtitle="Roles, who holds them in this demo, field-level permission grants, and country-level data isolation." />
+
+      <Card className="mb-4">
+        <CardHeader title="Country-Level Data Isolation" subtitle="Enforced alongside role-based access, per the roadmap's RBAC requirement" />
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          {[
+            { region: "United States", locations: "Chicago HQ, Austin, New York", note: "CCPA-scoped fields hidden from non-US HR Admin views" },
+            { region: "United Kingdom", locations: "London", note: "UK statutory leave types isolated from US leave policy configuration" },
+            { region: "Philippines", locations: "Delivery — EMEA support ops", note: "RA 10173 discipline records restricted to PH-designated HR approvers" },
+          ].map((r) => (
+            <div key={r.region} className="rounded-lg border border-[var(--surface-border)] p-3">
+              <p className="text-sm font-semibold text-[var(--text-primary)]">{r.region}</p>
+              <p className="text-xs text-[var(--text-muted)]">{r.locations}</p>
+              <p className="mt-1.5 text-xs text-[var(--text-secondary)]">{r.note}</p>
+            </div>
+          ))}
+        </div>
+      </Card>
 
       <Card className="mb-4">
         <CardHeader title="Security Roles" />

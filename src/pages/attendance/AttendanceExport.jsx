@@ -61,8 +61,8 @@ export default function AttendanceExport() {
   return (
     <div>
       <PageHeader
-        title="Attendance Export — Finance Cycle"
-        subtitle="Display-only preview of what would export for ADP/Finance. Field list is configurable pending sign-off."
+        title="Payroll Vendor Integration — Attendance Export"
+        subtitle="Feeds attendance/leave to the outsourced payroll vendor (ADP or similar) and gives Finance a consolidated workforce cost view. Field list is configurable pending sign-off."
         action={
           <div className="flex gap-2">
             <Button variant="secondary" size="sm" onClick={() => setCycleOffset((o) => o - 1)}>← Prior Cycle</Button>
