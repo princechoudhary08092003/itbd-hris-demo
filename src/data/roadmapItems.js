@@ -1,13 +1,12 @@
-// Static reference content for the Product Roadmap screen — mirrors the
-// HRMS_TeamGPS_Feature_Roadmap brief exactly (phases, weeks, descriptions),
-// annotated with what this demo actually delivers for each item.
+// Static reference content for the Product Roadmap screen — a from-scratch
+// HR + performance platform build for ITBD, replacing PeopleStrong.
 // status: "delivered" | "new" | "placeholder"
 export const ROADMAP_PHASES = [
   {
-    key: "must-have",
-    title: "Must Have",
-    phase: "Phase 1A · Weeks 5–20",
-    subtitle: "Core foundation",
+    key: "foundation",
+    title: "Core Foundation",
+    months: [1, 2],
+    subtitle: "Employee data, org structure, shifts, leave, performance core",
     tone: "red",
     items: [
       { n: 1, title: "Centralized Employee Database", description: "Single source of truth replacing PeopleStrong — foundation every other module depends on.", status: "delivered", to: "/hris/directory" },
@@ -21,25 +20,25 @@ export const ROADMAP_PHASES = [
     ],
   },
   {
-    key: "high",
-    title: "High",
-    phase: "Phase 1B · Weeks 21–32",
-    subtitle: "Self-service & integrations",
+    key: "self-service",
+    title: "Self-Service & Integrations",
+    months: [3, 4],
+    subtitle: "Employee/manager self-service, payroll and KPI pipelines",
     tone: "amber",
     items: [
       { n: 9, title: "SSO / AD / MFA", description: "Secure single sign-on and MFA for sensitive HR actions, across all geographies.", status: "placeholder", to: "/admin/security" },
       { n: 10, title: "Employee Self-Service", description: "Employees handle leave, payslips, and personal data — cuts routine HR tickets.", status: "delivered", to: "/" },
       { n: 11, title: "Manager Self-Service", description: "Managers approve requests and issue formal letters directly from their dashboard.", status: "delivered", to: "/leave/approvals" },
-      { n: 12, title: "KPI Data Ingestion", description: "Pulls QA/agent performance data automatically into TeamGPS via existing pipelines.", status: "new", to: "/performance/kpi-ingestion" },
+      { n: 12, title: "KPI Data Ingestion", description: "Pulls QA/agent performance data automatically into the platform via existing pipelines.", status: "new", to: "/performance/kpi-ingestion" },
       { n: 13, title: "Payroll Vendor Integration", description: "Feeds attendance/leave to outsourced payroll; consolidated workforce cost view.", status: "delivered", to: "/attendance/export" },
       { n: 14, title: "Onboarding & Offboarding", description: "Automates hire-to-exit lifecycle: probation reviews, transfers, full & final settlement.", status: "delivered", to: "/onboarding" },
     ],
   },
   {
-    key: "medium",
-    title: "Medium",
-    phase: "Phase 2 · Weeks 33–42",
-    subtitle: "Analytics, compliance & talent",
+    key: "analytics",
+    title: "Analytics, Compliance & Talent",
+    months: [5, 6],
+    subtitle: "Dashboards, compliance, succession, discipline, hiring",
     tone: "cyan",
     items: [
       { n: 15, title: "Real-Time Dashboards & Analytics", description: "Self-serve headcount, attrition, and cost metrics — no HR pull required.", status: "new", to: "/admin/analytics" },
@@ -50,18 +49,51 @@ export const ROADMAP_PHASES = [
     ],
   },
   {
-    key: "low-future",
-    title: "Low / Future",
-    phase: "Phase 3 · Weeks 43–50",
-    subtitle: "AI & innovation",
+    key: "innovation",
+    title: "AI & Innovation",
+    months: [7, 9],
+    subtitle: "Predictive insights, conversational self-service, GL integration",
     tone: "neutral",
     items: [
-      { n: 20, title: "AI-Powered Insights", description: "Attrition prediction and workforce planning — needs 12 months of live data first.", status: "placeholder", to: "/admin/analytics" },
+      { n: 20, title: "AI-Powered Insights", description: "Attrition prediction and workforce planning — trained on live data collected in the first 6 months.", status: "placeholder", to: "/admin/analytics" },
       { n: 21, title: "HR Chatbot", description: "WhatsApp-based self-service for routine HR questions across India and Philippines.", status: "placeholder", to: null },
       { n: 22, title: "ERP / GL Integration", description: "Connects HR cost and payroll data to Finance's GL system; opens a public REST API.", status: "placeholder", to: "/admin/integrations" },
     ],
   },
 ];
+
+// Milestones that sit outside the 22 numbered requirements — cutover and the
+// post-launch improvement runway.
+export const ROADMAP_MILESTONES = [
+  {
+    key: "full-delivery",
+    label: "Full Platform Delivery",
+    month: 9,
+    date: "April 30",
+    description: "All 22 requirements live — core HRIS, performance system, analytics/compliance, and AI/innovation features.",
+    tone: "green",
+  },
+  {
+    key: "migration",
+    label: "Legacy Data Migration",
+    month: 10,
+    date: "May 30",
+    description: "Full migration off PeopleStrong — historical employee, leave, and performance records validated and cut over.",
+    tone: "cyan",
+  },
+];
+
+export const ENHANCEMENT_PHASE = {
+  title: "Continuous Enhancement",
+  months: [10, 13],
+  subtitle: "Runs alongside and after migration",
+  items: [
+    "Custom reports built from live stakeholder requests",
+    "AI insights model tuning as more live data accumulates",
+    "HR Chatbot coverage expansion based on real query volume",
+    "UX refinements and workflow improvements from user feedback",
+  ],
+};
 
 export const ROADMAP_STATUS_META = {
   delivered: { label: "Delivered", tone: "green" },
@@ -70,6 +102,6 @@ export const ROADMAP_STATUS_META = {
 };
 
 export const ROADMAP_SUMMARY = {
-  title: "Replaces PeopleStrong and closes ITBD's performance-management gap with a single platform built natively on TeamGPS.",
-  detail: "All 22 requirements (from Rita, CLO) are sequenced into five phases with clear pre-requisites and owners. Estimated full delivery: 50 weeks (~11.5 months) from kickoff.",
+  title: "A from-scratch HR and performance platform for ITBD, replacing PeopleStrong.",
+  detail: "All 22 requirements ship within the first 6 months (Core Foundation through Analytics, Compliance & Talent). AI & Innovation follows over the next 3 months for a 9-month full delivery, with legacy data migration completing one month after that, and continuous enhancements running for 3 months alongside and beyond go-live.",
 };

@@ -58,8 +58,9 @@ resets if you close the tab or clear site data.
   converted back to employee) — the multi-employment data model in action.
 - **Onboarding**: convert Olivia Martinez from pre-onboarding (no company
   email yet) into a full employee.
-- **Product Roadmap** (top of the sidebar): the TeamGPS performance-management
-  roadmap (22 items across 4 phases) with live delivery status per item.
+- **Product Roadmap** (top of the sidebar): the full HR + performance
+  platform roadmap — a visual delivery timeline plus 22 items across 5
+  phases, each with live delivery status.
 - **Performance → PIP Cases / Discipline Cases**: create a case, advance it
   through its stages, and auto-generate the letter.
 - **Performance → Calibration & Normalization**: adjust a person's scores and
@@ -96,8 +97,8 @@ src/
                     # Table, Modal, PageHeader/PageBanner, Logo, icons…)
   pages/            # one folder per module (dashboard, leave, attendance,
                     # hris, onboarding, exit, recruitment, admin, helpdesk,
-                    # performance, roadmap) — performance/ is the TeamGPS
-                    # feature roadmap build-out (Impact Tier Scoring, PIP,
+                    # performance, roadmap) — performance/ is the performance
+                    # roadmap build-out (Impact Tier Scoring, PIP,
                     # Discipline, Calibration, Succession, KPI Ingestion)
   assets/images/    # stock photography used in banners (downloaded locally,
                     # not hotlinked)
@@ -130,9 +131,10 @@ The full build brief this demo was built from is `ITBD_HRIS_Demo_Build_Brief.md`
 — Sections 6–11 in particular cover the data model, screens, business rules,
 and seed data requirements this codebase implements.
 
-A second brief, the "HRMS/TeamGPS Feature Roadmap" (22 items across 4
-phases), was layered on afterward — see the in-app **Product Roadmap** page
-(`/roadmap`, source in `src/data/roadmapItems.js`) for the exact scope and
-what's delivered vs. placeholder. Items needing real infrastructure (SSO/MFA,
+A second brief, a 22-item HR + performance platform feature roadmap, was
+layered on afterward — see the in-app **Product Roadmap** page (`/roadmap`,
+source in `src/data/roadmapItems.js`) for the exact scope, the delivery
+timeline, and what's delivered vs. placeholder. Items needing real
+infrastructure (SSO/MFA,
 AI-powered insights, ERP/GL integration) are honest placeholders, same
 treatment as Recruitment.

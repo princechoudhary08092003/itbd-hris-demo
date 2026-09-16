@@ -9,7 +9,7 @@ function hash(str) {
 }
 
 // Dual-index performance metrics — what the KPI Data Ingestion pipeline
-// would pull in from TeamGPS scorecards. Deterministic per employment so
+// would pull in from QA/agent scorecards. Deterministic per employment so
 // the demo is stable across reloads, but varied enough to produce a real
 // spread for the Impact Tier / Calibration screens.
 function generate() {

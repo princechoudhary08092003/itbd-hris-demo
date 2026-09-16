@@ -27,7 +27,7 @@ export default function KpiIngestion() {
 
   return (
     <div>
-      <PageHeader title="KPI Data Ingestion" subtitle="Pulls QA/agent performance data automatically into TeamGPS via existing pipelines — feeds the Impact Tier Scoring engine." />
+      <PageHeader title="KPI Data Ingestion" subtitle="Pulls QA/agent performance data automatically into the platform via existing pipelines — feeds the Impact Tier Scoring engine." />
 
       <Card className="mb-4">
         <CardHeader title="Run a Sync" />

@@ -5,7 +5,7 @@ function isoDaysAgo(n) {
 }
 
 // Simulated history of the automated pipeline that pulls QA/agent
-// performance data into TeamGPS (roadmap item #12 — KPI Data Ingestion).
+// performance data into the platform (roadmap item #12 — KPI Data Ingestion).
 export const kpiIngestionLog = [
   { run_id: "KPI-RUN-041", ran_at: isoDaysAgo(1), source: "QA Scorecard API", records_ingested: 24, status: "success" },
   { run_id: "KPI-RUN-040", ran_at: isoDaysAgo(8), source: "QA Scorecard API", records_ingested: 24, status: "success" },
