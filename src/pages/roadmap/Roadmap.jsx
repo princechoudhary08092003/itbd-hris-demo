@@ -3,10 +3,9 @@ import { motion } from "framer-motion";
 import PageHeader from "../../components/ui/PageHeader";
 import Card, { CardHeader } from "../../components/ui/Card";
 import Badge from "../../components/ui/Badge";
-import { ROADMAP_PHASES, ROADMAP_STATUS_META, ROADMAP_SUMMARY, ROADMAP_MILESTONES, ENHANCEMENT_PHASE } from "../../data/roadmapItems";
+import { ROADMAP_PHASES, ROADMAP_STATUS_META, ROADMAP_SUMMARY, ROADMAP_MILESTONES, ENHANCEMENT_PHASE, MONTH_LABELS, TOTAL_MONTHS, ALREADY_AVAILABLE } from "../../data/roadmapItems";
 import { IconArrowRight, IconCheck } from "../../components/ui/Icons";
 
-const TOTAL_MONTHS = 13;
 const PHASE_BAR_TONE = {
   red: "from-red-500 to-red-600",
   amber: "from-amber-400 to-amber-500",
@@ -20,6 +19,9 @@ const PHASE_HEADER_TONE = {
   neutral: "bg-[var(--surface-3)] text-[var(--text-primary)]",
 };
 
+function monthLabel(n) {
+  return MONTH_LABELS[n - 1] ?? n;
+}
 function pct(month) {
   return ((month - 1) / TOTAL_MONTHS) * 100;
 }
@@ -29,8 +31,8 @@ function widthPct(start, end) {
 
 export default function Roadmap() {
   const total = ROADMAP_PHASES.reduce((s, p) => s + p.items.length, 0);
-  const delivered = ROADMAP_PHASES.flatMap((p) => p.items).filter((i) => i.status === "delivered").length;
-  const newBuilt = ROADMAP_PHASES.flatMap((p) => p.items).filter((i) => i.status === "new").length;
+  const toBuild = ROADMAP_PHASES.flatMap((p) => p.items).filter((i) => i.status === "new").length;
+  const needsInfra = total - toBuild;
 
   return (
     <div>
@@ -39,15 +41,22 @@ export default function Roadmap() {
       <Card className="mb-6">
         <p className="text-sm text-[var(--text-secondary)]">{ROADMAP_SUMMARY.detail}</p>
         <div className="mt-3 flex flex-wrap gap-2">
-          <Badge tone="green">{delivered} / {total} already delivered</Badge>
-          <Badge tone="cyan">{newBuilt} / {total} new in this build</Badge>
-          <Badge tone="amber">{total - delivered - newBuilt} / {total} placeholder (needs real infra)</Badge>
+          <Badge tone="cyan">{toBuild} / {total} to be built</Badge>
+          <Badge tone="amber">{needsInfra} / {total} need real infrastructure</Badge>
         </div>
+        <Link to={ALREADY_AVAILABLE.to} className="mt-3 flex items-center gap-3 rounded-lg border border-brand-green/30 bg-brand-green/10 px-3 py-2.5 transition-colors hover:bg-brand-green/15">
+          <Badge tone="green"><IconCheck size={11} /></Badge>
+          <div className="min-w-0">
+            <p className="text-sm font-medium text-brand-green-dark dark:text-brand-green">{ALREADY_AVAILABLE.label} — already available today</p>
+            <p className="text-xs text-[var(--text-secondary)]">{ALREADY_AVAILABLE.description}</p>
+          </div>
+          <IconArrowRight size={14} className="ml-auto shrink-0 text-brand-green-dark dark:text-brand-green" />
+        </Link>
       </Card>
 
       {/* Visual timeline */}
       <Card className="mb-6 overflow-x-auto">
-        <CardHeader title="Delivery Timeline" subtitle="6 months to full core platform, 9 months with AI & Innovation, migration and enhancements beyond" />
+        <CardHeader title="Delivery Timeline" subtitle="Kickoff Nov 1 — 6 months to core platform (Apr 30), migration and AI & Innovation through July, enhancements beyond" />
         <div className="min-w-[720px] pb-8 pt-2">
           <div className="relative h-10 rounded-lg bg-[var(--surface-2)]">
             {ROADMAP_PHASES.map((phase, i) => (
@@ -83,7 +92,7 @@ export default function Roadmap() {
           <div className="relative mt-1.5 h-4">
             {Array.from({ length: TOTAL_MONTHS }, (_, i) => i + 1).map((m) => (
               <span key={m} className="absolute -translate-x-1/2 font-mono-data text-[10px] text-[var(--text-muted)]" style={{ left: `${pct(m) + widthPct(1, 1) / 2}%` }}>
-                {m}
+                {monthLabel(m)}
               </span>
             ))}
           </div>
@@ -110,7 +119,7 @@ export default function Roadmap() {
           <Card key={m.key}>
             <div className="flex items-start justify-between gap-3">
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-[var(--text-muted)]">Month {m.month} · Target {m.date}</p>
+                <p className="text-xs font-medium uppercase tracking-wide text-[var(--text-muted)]">{monthLabel(m.month)} · Target {m.date}</p>
                 <p className="mt-1 text-sm font-semibold text-[var(--text-primary)]">{m.label}</p>
               </div>
               <Badge tone={m.tone}><IconCheck size={11} /></Badge>
@@ -126,7 +135,7 @@ export default function Roadmap() {
           <div key={phase.key}>
             <div className={`rounded-t-xl px-4 py-3 ${PHASE_HEADER_TONE[phase.tone]}`}>
               <p className="text-sm font-bold">{phase.title}</p>
-              <p className="text-xs opacity-90">Month{phase.months[0] === phase.months[1] ? ` ${phase.months[0]}` : `s ${phase.months[0]}–${phase.months[1]}`}</p>
+              <p className="text-xs opacity-90">{phase.months[0] === phase.months[1] ? monthLabel(phase.months[0]) : `${monthLabel(phase.months[0])}–${monthLabel(phase.months[1])}`}</p>
               <p className="text-xs opacity-75">{phase.subtitle}</p>
             </div>
             <div className="flex flex-col gap-3 rounded-b-xl border border-t-0 border-[var(--surface-border)] bg-[var(--surface-1)] p-3">
@@ -140,7 +149,7 @@ export default function Roadmap() {
         <div>
           <div className="rounded-t-xl bg-brand-green/90 px-4 py-3 text-brand-dark">
             <p className="text-sm font-bold">{ENHANCEMENT_PHASE.title}</p>
-            <p className="text-xs opacity-90">Months {ENHANCEMENT_PHASE.months[0]}–{ENHANCEMENT_PHASE.months[1]}</p>
+            <p className="text-xs opacity-90">{monthLabel(ENHANCEMENT_PHASE.months[0])}–{monthLabel(ENHANCEMENT_PHASE.months[1])}</p>
             <p className="text-xs opacity-75">{ENHANCEMENT_PHASE.subtitle}</p>
           </div>
           <div className="flex flex-col gap-2 rounded-b-xl border border-t-0 border-[var(--surface-border)] bg-[var(--surface-1)] p-3">

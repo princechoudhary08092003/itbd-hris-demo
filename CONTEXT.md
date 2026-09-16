@@ -58,9 +58,13 @@ resets if you close the tab or clear site data.
   converted back to employee) — the multi-employment data model in action.
 - **Onboarding**: convert Olivia Martinez from pre-onboarding (no company
   email yet) into a full employee.
+- **Key Features** (top of the sidebar): the problem/solution case for each
+  differentiator, with a real generated PDF embedded inline.
 - **Product Roadmap** (top of the sidebar): the full HR + performance
-  platform roadmap — a visual delivery timeline plus 22 items across 5
-  phases, each with live delivery status.
+  platform roadmap — a visual delivery timeline (kickoff Nov 1, core
+  platform by Apr 30, migration + AI/Innovation through Jul, enhancements
+  through Oct) plus all 22 items, none marked delivered except the one
+  capability (digital forms/e-signature) that already exists today.
 - **Performance → PIP Cases / Discipline Cases**: create a case, advance it
   through its stages, and auto-generate the letter.
 - **Performance → Calibration & Normalization**: adjust a person's scores and

@@ -50,6 +50,7 @@ import Helpdesk from "./pages/helpdesk/Helpdesk";
 import EmployeeProfile from "./pages/hris/EmployeeProfile";
 
 import Roadmap from "./pages/roadmap/Roadmap";
+import KeyFeatures from "./pages/features/KeyFeatures";
 
 import ImpactScoring from "./pages/performance/ImpactScoring";
 import Pip from "./pages/performance/Pip";
@@ -69,6 +70,7 @@ export default function App() {
       <Route element={<AppShell />}>
         <Route path="/" element={<EmployeeDashboard />} />
         <Route path="/roadmap" element={<Roadmap />} />
+        <Route path="/key-features" element={<KeyFeatures />} />
 
         <Route path="/performance/scoring" element={<ImpactScoring />} />
         <Route path="/performance/pip" element={<Pip />} />

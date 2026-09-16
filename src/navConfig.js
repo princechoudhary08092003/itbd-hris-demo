@@ -1,6 +1,6 @@
 import {
   IconHome, IconCalendar, IconClock, IconBriefcase, IconUsers, IconUserPlus, IconUserMinus,
-  IconShield, IconTicket, IconBuilding, IconTarget, IconMap,
+  IconShield, IconTicket, IconBuilding, IconTarget, IconMap, IconLayers,
 } from "./components/ui/Icons";
 
 // minRole: employee | manager | hr_admin | super_admin — lowest role that can see the item
@@ -9,6 +9,7 @@ export const navSections = [
     title: "Overview",
     items: [
       { label: "Dashboard", path: "/", icon: IconHome, minRole: "employee" },
+      { label: "Key Features", path: "/key-features", icon: IconLayers, minRole: "employee" },
       { label: "Product Roadmap", path: "/roadmap", icon: IconMap, minRole: "employee" },
     ],
   },
