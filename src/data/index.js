@@ -24,6 +24,8 @@ import { probationReviews } from "./seed/probationReviews";
 import { kpiIngestionLog } from "./seed/kpiIngestionLog";
 import { payslips } from "./seed/payslips";
 import { candidates } from "./seed/candidates";
+import { policyDocuments } from "./seed/policyDocuments";
+import { policyAcknowledgments } from "./seed/policyAcknowledgments";
 
 // A fresh deep clone every time the app boots (or the demo is reset),
 // so edits made during a session never leak into the seed modules themselves.
@@ -60,5 +62,7 @@ export function createInitialState() {
     kpiIngestionLog,
     payslips,
     candidates,
+    policyDocuments,
+    policyAcknowledgments,
   });
 }

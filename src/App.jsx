@@ -9,6 +9,7 @@ import LeaveApprovals from "./pages/leave/LeaveApprovals";
 import LeaveReports from "./pages/leave/LeaveReports";
 
 import AttendanceHome from "./pages/attendance/AttendanceHome";
+import LiveCapture from "./pages/attendance/LiveCapture";
 import CompOff from "./pages/attendance/CompOff";
 import ShiftSwap from "./pages/attendance/ShiftSwap";
 import BulkApprovals from "./pages/attendance/BulkApprovals";
@@ -82,6 +83,7 @@ export default function App() {
         <Route path="/leave/reports" element={<LeaveReports />} />
 
         <Route path="/attendance" element={<AttendanceHome />} />
+        <Route path="/attendance/live-capture" element={<LiveCapture />} />
         <Route path="/attendance/comp-off" element={<CompOff />} />
         <Route path="/attendance/shift-swap" element={<ShiftSwap />} />
         <Route path="/attendance/bulk-approvals" element={<BulkApprovals />} />

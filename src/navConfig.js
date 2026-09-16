@@ -27,6 +27,7 @@ export const navSections = [
     icon: IconClock,
     items: [
       { label: "My / Team Attendance", path: "/attendance", minRole: "employee" },
+      { label: "Live Attendance Capture", path: "/attendance/live-capture", minRole: "employee" },
       { label: "Comp-Off", path: "/attendance/comp-off", minRole: "employee" },
       { label: "Shift Swap", path: "/attendance/shift-swap", minRole: "employee" },
       { label: "Bulk Approvals", path: "/attendance/bulk-approvals", minRole: "manager" },

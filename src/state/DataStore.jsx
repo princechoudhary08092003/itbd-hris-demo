@@ -328,6 +328,45 @@ function reducer(state, action) {
       };
     }
 
+    case "SIGN_POLICY_DOCUMENT": {
+      const ack = { ack_id: nextId("ACK"), signed_at: toDateStr(new Date()), ...action.payload };
+      return { ...state, policyAcknowledgments: [ack, ...state.policyAcknowledgments] };
+    }
+
+    case "CREATE_POLICY_DOCUMENT": {
+      const doc = {
+        document_id: action.payload.document_id ?? nextId("POL"),
+        version: "1.0",
+        effective_date: toDateStr(new Date()),
+        requires_signature: false,
+        file_url: null,
+        ...action.payload,
+      };
+      return { ...state, policyDocuments: [doc, ...state.policyDocuments] };
+    }
+
+    case "ADD_KIOSK_PUNCH": {
+      const { employment_id, device_id } = action.payload;
+      const today = toDateStr(new Date());
+      // Toggle against this person's own prior kiosk taps only — their
+      // regular (seeded) shift punches from a different device shouldn't
+      // affect whether the next live tap reads as an IN or an OUT.
+      const todaysKioskPunches = state.punchEvents
+        .filter((p) => p.employment_id === employment_id && p.source === "access_control" && p.device_id?.startsWith("KIOSK") && p.timestamp_utc.slice(0, 10) === today)
+        .sort((a, b) => a.timestamp_utc.localeCompare(b.timestamp_utc));
+      const lastDirection = todaysKioskPunches[todaysKioskPunches.length - 1]?.direction;
+      const direction = lastDirection === "in" ? "out" : "in";
+      const punch = {
+        punch_id: nextId("PN"),
+        employment_id,
+        timestamp_utc: new Date().toISOString(),
+        direction,
+        source: "access_control",
+        device_id: device_id ?? "KIOSK-01",
+      };
+      return { ...state, punchEvents: [...state.punchEvents, punch] };
+    }
+
     case "MOVE_CANDIDATE_STAGE": {
       const { candidate_id, stage } = action.payload;
       return { ...state, candidates: state.candidates.map((c) => (c.candidate_id === candidate_id ? { ...c, stage } : c)) };

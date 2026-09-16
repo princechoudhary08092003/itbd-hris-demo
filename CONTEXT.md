@@ -67,6 +67,15 @@ resets if you close the tab or clear site data.
   watch the bell-curve distribution and their tier update live.
 - **Recruitment → TA Management**: a real hiring pipeline kanban — move a
   candidate between stages.
+- **Attendance & Shift → Live Attendance Capture**: a simulated badge-tap
+  kiosk — pick anyone, tap, and watch attendance record instantly (IN/OUT
+  toggles automatically).
+- **Policy Hub**: every policy has a document ID; the three formal ones
+  (Remote Work & Attendance, Code of Conduct, NDA) have a real generated PDF
+  you can view inline and digitally sign (draw a signature, submit — the
+  acknowledgment is logged). The SOP Assistant tab drafts a new
+  standard-formatted policy from a topic + key points and saves it straight
+  into the Hub with its own document ID.
 - The floating chat bubble (bottom-right) is a prototype HR FAQ assistant —
   try asking about leave, comp-off, payslips, or holidays.
 - Toggle dark/light mode (moon/sun icon, top right).

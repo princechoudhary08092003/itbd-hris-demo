@@ -1,0 +1,97 @@
+// Single source of truth for every ITBD policy — each one has a stable
+// document_id other records (letters, discipline cases, movement requests)
+// can reference. Three carry a real generated PDF and require a digital
+// signature acknowledgment; the rest are informational reference policies.
+export const policyDocuments = [
+  {
+    document_id: "POL-LEAVE-002",
+    title: "Leave Policy",
+    category: "Leave",
+    version: "3.1",
+    effective_date: "2026-01-01",
+    owner: "People & HR",
+    requires_signature: false,
+    file_url: null,
+    points: [
+      "PTO accrues at 1.67 days/month for US employees, capped at 30 days.",
+      "Annual Leave (UK) is granted 25 days/year, capped at 30 days.",
+      "Unused PTO/AL carries forward up to 5 days into the next period.",
+      "Sick leave does not carry forward and cannot be encashed.",
+    ],
+  },
+  {
+    document_id: "POL-COMPOFF-003",
+    title: "Comp-Off Policy",
+    category: "Attendance",
+    version: "1.2",
+    effective_date: "2026-01-01",
+    owner: "People & HR",
+    requires_signature: false,
+    file_url: null,
+    points: [
+      "Working a declared holiday or a scheduled week-off earns one comp-off day.",
+      "Comp-off must be approved by the reporting manager before redemption.",
+      "Comp-off must be redeemed within 60 days of approval or it expires.",
+    ],
+  },
+  {
+    document_id: "POL-ATT-014",
+    title: "Remote Work & Attendance Policy",
+    category: "Attendance",
+    version: "2.3",
+    effective_date: "2026-07-01",
+    owner: "People & HR",
+    requires_signature: true,
+    file_url: "/documents/POL-ATT-014-remote-work-policy.pdf",
+    points: [
+      "Grace period applies per shift — a punch within grace is never marked late.",
+      "A night shift's attendance day is attributed to the date the shift started.",
+      "Attendance locks for payroll once the 21st–20th cycle closes.",
+      "Badge tap and geofenced mobile check-in capture attendance instantly — no manual entry required.",
+    ],
+  },
+  {
+    document_id: "POL-MOVE-004",
+    title: "Movement & Transfer Policy",
+    category: "Movement",
+    version: "1.0",
+    effective_date: "2025-09-01",
+    owner: "People & HR",
+    requires_signature: false,
+    file_url: null,
+    points: [
+      "All movement requests require HR Admin approval before becoming effective.",
+      "Approving a movement updates the org chart and the employee's reporting line immediately.",
+      "Bench release and client reassignment follow the same approval workflow as transfers.",
+    ],
+  },
+  {
+    document_id: "POL-CONDUCT-001",
+    title: "Employee Code of Conduct",
+    category: "Conduct",
+    version: "4.0",
+    effective_date: "2026-01-01",
+    owner: "People & HR",
+    requires_signature: true,
+    file_url: "/documents/POL-CONDUCT-001-code-of-conduct.pdf",
+    points: [
+      "Treat colleagues, clients, and candidates with respect regardless of role or seniority.",
+      "Protect client and company confidential information at all times.",
+      "Report suspected violations through the Discipline Management process.",
+    ],
+  },
+  {
+    document_id: "POL-NDA-007",
+    title: "Confidentiality & Non-Disclosure Agreement",
+    category: "Legal",
+    version: "1.4",
+    effective_date: "2025-08-15",
+    owner: "People & HR / Legal",
+    requires_signature: true,
+    file_url: "/documents/POL-NDA-007-confidentiality-nda.pdf",
+    points: [
+      "Covers client data, employee records, source code, pricing, and business plans.",
+      "Obligations survive the end of your engagement with ITBD, regardless of reason for separation.",
+    ],
+  },
+];
