@@ -47,6 +47,7 @@ import RolesAdmin from "./pages/admin/Roles";
 import AuditLog from "./pages/admin/AuditLog";
 
 import Helpdesk from "./pages/helpdesk/Helpdesk";
+import NotFound from "./pages/NotFound";
 import EmployeeProfile from "./pages/hris/EmployeeProfile";
 
 import Roadmap from "./pages/roadmap/Roadmap";
@@ -128,6 +129,8 @@ export default function App() {
         <Route path="/admin/integrations" element={<Integrations />} />
 
         <Route path="/helpdesk" element={<Helpdesk />} />
+
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );

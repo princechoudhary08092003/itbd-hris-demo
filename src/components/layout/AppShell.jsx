@@ -7,6 +7,7 @@ import MobileBottomNav from "./MobileBottomNav";
 import Logo from "../ui/Logo";
 import { IconX } from "../ui/Icons";
 import RouteGuard from "./RouteGuard";
+import ErrorBoundary from "./ErrorBoundary";
 import HrChatBubble from "../chat/HrChatBubble";
 
 export default function AppShell() {
@@ -62,7 +63,9 @@ export default function AppShell() {
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.22, ease: "easeOut" }}
                 >
-                  <Outlet />
+                  <ErrorBoundary resetKey={location.pathname}>
+                    <Outlet />
+                  </ErrorBoundary>
                 </motion.div>
               </AnimatePresence>
             </RouteGuard>
